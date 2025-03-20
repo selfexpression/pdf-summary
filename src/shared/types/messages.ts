@@ -12,4 +12,6 @@ export interface MessageResponse {
   result?: string | Record<string, any>;
   error?: string;
   text?: string;
+  isPdf?: boolean;
+  url?: string;
 }

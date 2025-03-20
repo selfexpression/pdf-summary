@@ -51,7 +51,7 @@ class LLMService {
 
       return completion?.choices[0].message.content;
     } catch (error) {
-      throw new Error('Error generating answer');
+      throw new Error('Error generating summary');
     }
   }
 }
