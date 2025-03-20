@@ -51,22 +51,21 @@ p {
   display: none;
 }
 
-.custom-file-upload,
-button {
+.action-btn {
   display: inline-block;
   padding: 2px 3px;
   background-color: #3b42c2;
   color: white;
   cursor: pointer;
   border-radius: 5px;
+  font-size: 14px;
 }
 
-.custom-file-upload:hover,
-button {
+.action-btn {
   background-color: #0056b3;
 }
 
-.result-buttons {
+.result-btns {
   display: flex;
   align-items: center;
   gap: 10px;
