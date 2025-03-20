@@ -61,12 +61,19 @@ button {
   border-radius: 5px;
 }
 
-.custom-file-upload:hover {
+.custom-file-upload:hover,
+button {
   background-color: #0056b3;
 }
 
+.result-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 #file-status {
-  font-size: 12px;
+  font-size: 14px;
   color: gray;
 }
 
@@ -75,6 +82,7 @@ button {
   width: 100%;
   min-height: 100px;
   padding: 5px;
+  border-radius: 5px;
   overflow-y: auto;
   white-space: pre-wrap;
 }

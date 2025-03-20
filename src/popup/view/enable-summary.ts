@@ -15,12 +15,16 @@ export const enableSummary = (
   summarizeBtn.addEventListener('click', async () => {
     try {
       summarizeBtn.classList.add('loading');
+      summarizeBtn.textContent = '';
       const response = await messageHandlers.generateSummary(text);
 
       if (response.result) {
         summaryOutput.textContent = response.result;
       }
 
+      summarizeBtn.classList.remove('loading');
+      summarizeBtn.textContent = 'Summarize in One Click';
+      summarizeBtn.disabled = true;
       copyBtn.disabled = false;
       exportBtn.disabled = false;
     } catch (error) {
