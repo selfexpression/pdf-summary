@@ -8,9 +8,9 @@ const manifestJson: chrome.runtime.Manifest = JSON.parse(
 );
 
 export default defineConfig({
-  plugins: [
-    webExtension({
-      manifest: () => manifestJson,
-    }),
-  ],
+  // plugins: [
+  //   webExtension({
+  //     manifest: () => manifestJson,
+  //   }),
+  // ],
 });

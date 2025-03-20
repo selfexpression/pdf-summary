@@ -1,13 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>AI PDF Summary</title>
+  <link rel="stylesheet" href="src/popup/styles/popup.css" />
+  <script type="module" src="src/popup/popup.ts" defer></script>
+</head>
+
+<body>
+  <div class="container">
+    <h2>AI PDF Summary</h2>
+    <div class="file-input-wrapper">
+      <label for="file-input" class="custom-file-upload">
+        <span id="file-label">Select PDF File</span>
+      </label>
+      <input type="file" id="file-input" accept=".pdf" />
+      <span id="file-status">No File Selected</span>
+    </div>
+    <button id="summarize-btn" disabled>Summarize in One Click</button>
+    <div id="summary-output"></div>
+    <button id="copy-btn" disabled>Copy to Clipboard</button>
+    <button id="export-btn" disabled>Export Summary</button>
+  </div>
+</body>
+
 </html>

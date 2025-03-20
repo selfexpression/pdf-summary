@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Interview Questions Generator",
+  "name": "PDF Summary",
   "version": "1.0",
-  "description": "Generate interview questions from job postings",
+  "description": "Analyze pdf file and output summary",
   "permissions": [
     "activeTab",
     "storage",
