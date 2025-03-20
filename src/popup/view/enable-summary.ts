@@ -12,16 +12,20 @@ export const enableSummary = (
   ) as HTMLButtonElement;
 
   summarizeBtn.disabled = false;
-  summarizeBtn.onclick = async () => {
+  summarizeBtn.addEventListener('click', async () => {
     try {
-      const result = await messageHandlers.generateSummary(text);
-      // const summary = formatSummary(theme, takeaways);
-      summaryOutput.textContent = result;
+      summarizeBtn.classList.add('loading');
+      const response = await messageHandlers.generateSummary(text);
+
+      if (response.result) {
+        summaryOutput.textContent = response.result;
+      }
+
       copyBtn.disabled = false;
       exportBtn.disabled = false;
     } catch (error) {
       console.error('Error generating summary:', error);
       summaryOutput.textContent = 'Error generating summary';
     }
-  };
+  });
 };

@@ -1,6 +1,6 @@
-export function handleError(error: unknown): { error: string } {
+export function handleError(error: unknown): { errorMessage: string } {
   if (error instanceof Error) {
-    return { error: error.message };
+    return { errorMessage: error.message };
   }
-  return { error: 'An unexpected error occurred' };
+  return { errorMessage: 'An unexpected error occurred' };
 }

@@ -1,5 +1,6 @@
 import OpenAI from 'openai';
 import { OPENAI_CONFIG, SYSTEM_PROMPTS } from '../shared/constants';
+import { handleError } from '../shared/error-handler';
 
 class LLMService {
   private static instance: LLMService | null = null;
@@ -50,8 +51,9 @@ class LLMService {
       });
 
       return completion?.choices[0].message.content;
-    } catch (error) {
-      throw new Error('Error generating summary');
+    } catch (error: unknown) {
+      const { errorMessage } = handleError(error);
+      throw new Error(errorMessage);
     }
   }
 }

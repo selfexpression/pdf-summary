@@ -1,6 +1,6 @@
 export const OPENAI_CONFIG = {
   BASE_URL: 'https://api.deepseek.com',
-  MODEL: 'deepseek-summarization',
+  MODEL: 'deepseek-chat',
 };
 
 export const SYSTEM_PROMPTS = {

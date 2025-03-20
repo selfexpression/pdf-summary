@@ -19,9 +19,13 @@ const generateSummary = async (
     const result = await LLMServiceInstance.generateSummary(
       message.prompt ?? ''
     );
-    sendResponse(result ? { result } : { error: 'Error generating summary' });
+
+    if (result) {
+      sendResponse({ result });
+    }
   } catch (error) {
-    sendResponse(handleError(error));
+    const { errorMessage } = handleError(error);
+    sendResponse({ error: errorMessage });
   }
 };
 
