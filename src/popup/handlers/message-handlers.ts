@@ -14,6 +14,16 @@ const sendMessage = async <T>(message: MessageRequest): Promise<T> => {
   });
 };
 
-export const checkActiveTab = async (): Promise<CheckActiveTabResponse> => {
+const checkActiveTab = async (): Promise<CheckActiveTabResponse> => {
   return sendMessage({ type: MessageType.CHECK_ACTIVE_TAB });
+};
+
+const generateSummary = async (text: string): Promise<string> => {
+  return sendMessage({ type: MessageType.GENERATE_SUMMARY, prompt: text });
+};
+
+export const messageHandlers = {
+  sendMessage,
+  checkActiveTab,
+  generateSummary,
 };

@@ -1,18 +1,28 @@
-import { MessageType, MessageRequest } from '../shared/types/messages';
+import { messageHandlers } from './handlers/message-handlers';
+import { installHandlers } from './handlers/install-handlers';
+import { handleError } from '../shared/error-handler';
+import type { MessageRequest } from '../shared/types/messages';
 
 chrome.runtime.onMessage.addListener(
   (message: MessageRequest, _, sendResponse) => {
-    if (message.type === MessageType.CHECK_ACTIVE_TAB) {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        const tab = tabs[0];
-        if (tab.url?.endsWith('.pdf')) {
-          sendResponse({ isPdf: true, url: tab.url });
-        } else {
-          sendResponse({ isPdf: false });
-        }
+    const handler = messageHandlers[message.type];
+
+    if (!handler) {
+      sendResponse({
+        error: `No handler for message type: ${message.type}`,
       });
 
       return true;
     }
+
+    Promise.resolve(handler(message, sendResponse)).catch((error) =>
+      sendResponse(handleError(error))
+    );
+
+    return true;
   }
 );
+
+chrome.runtime.onInstalled.addListener(() => {
+  installHandlers.onInstalled();
+});

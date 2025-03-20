@@ -4,8 +4,6 @@ export const OPENAI_CONFIG = {
 };
 
 export const SYSTEM_PROMPTS = {
-  GENERATE_ANSWER:
-    'You are a developer interviewing for a job. Answer technical and behavioral questions concisely (2-3 sentences).',
-  GENERATE_JSON_CONTENT:
-    'You are a helpful assistant analyzing job vacancy information and returning JSON responses.',
+  GENERATE_SUMMARY:
+    "You are a professional recruiter, providing feedback on the candidate's resume.",
 };

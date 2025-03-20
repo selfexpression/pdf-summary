@@ -34,32 +34,7 @@ class LLMService {
     });
   }
 
-  public async generateJSONContent(
-    prompt: string,
-    structure: Record<string, string[]>
-  ): Promise<string | null | undefined> {
-    try {
-      const completion = await this.openAI?.chat.completions.create({
-        messages: [
-          {
-            role: 'system',
-            content: `${
-              SYSTEM_PROMPTS.GENERATE_JSON_CONTENT
-            } Structure: ${JSON.stringify(structure)}`,
-          },
-          { role: 'user', content: prompt },
-        ],
-        model: OPENAI_CONFIG.MODEL,
-        response_format: { type: 'json_object' },
-      });
-
-      return completion?.choices[0].message.content;
-    } catch (error) {
-      throw new Error('Error generating JSON content');
-    }
-  }
-
-  public async generateAnswer(
+  public async generateSummary(
     prompt: string
   ): Promise<string | null | undefined> {
     try {
@@ -67,7 +42,7 @@ class LLMService {
         messages: [
           {
             role: 'system',
-            content: SYSTEM_PROMPTS.GENERATE_ANSWER,
+            content: SYSTEM_PROMPTS.GENERATE_SUMMARY,
           },
           { role: 'user', content: prompt },
         ],

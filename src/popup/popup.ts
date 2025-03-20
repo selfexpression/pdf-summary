@@ -1,4 +1,3 @@
-// import { generateSummary } from '../modules/apiClient';
 import { extractTextFromPDF } from './utils/extract-text-from-pdf';
 import { enableSummary } from './view/enable-summary';
 import { copyToClipboard } from './utils/copy-to-clipboard';

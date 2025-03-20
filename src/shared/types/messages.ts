@@ -7,3 +7,9 @@ export interface MessageRequest {
   type: MessageType;
   prompt?: string;
 }
+
+export interface MessageResponse {
+  result?: string | Record<string, any>;
+  error?: string;
+  text?: string;
+}
