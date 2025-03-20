@@ -2,7 +2,7 @@ import { extractTextFromPDF } from './utils/extract-text-from-pdf';
 import { enableSummary } from './view/enable-summary';
 import { copyToClipboard } from './utils/copy-to-clipboard';
 import { exportToTxt } from './utils/export-to-txt';
-import { checkActiveTab } from './handlers/message-handlers';
+import { messageHandlers } from './handlers/message-handlers';
 
 document.addEventListener('DOMContentLoaded', () => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'summary-output'
   ) as HTMLDivElement;
 
-  checkActiveTab().then((response) => {
+  messageHandlers.checkActiveTab().then((response) => {
     if (response.isPdf && response.url) {
       fileStatus.textContent = 'Loading PDF from URL...';
       extractTextFromPDF(response.url)
