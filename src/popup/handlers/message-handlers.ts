@@ -1,14 +1,8 @@
-import { MessageRequest, MessageType } from '../../shared/types/messages';
-
-export interface CheckActiveTabResponse {
-  isPdf: boolean;
-  url?: string;
-}
-
-export interface SummaryResponse {
-  result?: string;
-  error?: string;
-}
+import {
+  MessageRequest,
+  MessageType,
+  MessageResponse,
+} from '../../shared/types/messages';
 
 const sendMessage = async <T>(message: MessageRequest): Promise<T> => {
   return new Promise((resolve, reject) => {
@@ -24,14 +18,14 @@ const sendMessage = async <T>(message: MessageRequest): Promise<T> => {
   });
 };
 
-const checkActiveTab = (): Promise<CheckActiveTabResponse> => {
-  return sendMessage<CheckActiveTabResponse>({
+const checkActiveTab = (): Promise<MessageResponse> => {
+  return sendMessage<MessageResponse>({
     type: MessageType.CHECK_ACTIVE_TAB,
   });
 };
 
-const generateSummary = async (text: string): Promise<SummaryResponse> => {
-  return await sendMessage<SummaryResponse>({
+const generateSummary = async (text: string): Promise<MessageResponse> => {
+  return await sendMessage<MessageResponse>({
     type: MessageType.GENERATE_SUMMARY,
     prompt: text,
   });

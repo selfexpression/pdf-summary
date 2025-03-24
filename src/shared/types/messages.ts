@@ -8,10 +8,14 @@ export interface MessageRequest {
   prompt?: string;
 }
 
-export interface MessageResponse {
-  result?: string | Record<string, any>;
+export type SummaryResponse = {
+  result?: string;
   error?: string;
-  text?: string;
+};
+
+export type CheckActiveTabResponse = {
   isPdf?: boolean;
   url?: string;
-}
+};
+
+export type MessageResponse = SummaryResponse & CheckActiveTabResponse;

@@ -1,5 +1,4 @@
 import { messageHandlers } from '../handlers/message-handlers';
-import { formatSummary } from '../utils/format-summary';
 
 export const enableSummary = (
   text: string,

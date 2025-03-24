@@ -4,7 +4,7 @@ import { copyToClipboard } from './utils/copy-to-clipboard';
 import { exportToTxt } from './utils/export-to-txt';
 import { messageHandlers } from './handlers/message-handlers';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const fileStatus = document.getElementById('file-status') as HTMLSpanElement;
   const copyBtn = document.getElementById('copy-btn') as HTMLButtonElement;
@@ -13,20 +13,20 @@ document.addEventListener('DOMContentLoaded', () => {
     'summary-output'
   ) as HTMLDivElement;
 
-  messageHandlers.checkActiveTab().then((response) => {
-    if (response.isPdf && response.url) {
-      fileStatus.textContent = 'Loading PDF from URL...';
-      extractTextFromPDF(response.url)
-        .then((text) => {
-          fileStatus.textContent = 'PDF from URL loaded';
-          enableSummary(text, summaryOutput, copyBtn, exportBtn);
-        })
-        .catch((error) => {
-          console.error('Error loading PDF from URL:', error);
-          fileStatus.textContent = 'Error loading PDF from URL';
-        });
+  const checkResponse = await messageHandlers.checkActiveTab();
+
+  if (checkResponse.isPdf && checkResponse.url) {
+    fileStatus.textContent = 'Loading PDF from URL...';
+
+    try {
+      const text = await extractTextFromPDF(checkResponse.url);
+      fileStatus.textContent = 'PDF from URL loaded';
+      enableSummary(text, summaryOutput, copyBtn, exportBtn);
+    } catch (error) {
+      console.error('Error loading PDF from URL:', error);
+      fileStatus.textContent = 'Error loading PDF from URL';
     }
-  });
+  }
 
   fileInput.addEventListener('change', async () => {
     const file = fileInput.files?.[0];
